@@ -1,0 +1,303 @@
+/* ===================================================
+   RESET
+=================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: "Segoe UI", sans-serif;
+  background:#f5f3ef;
+}
+
+/* ===================================================
+   LAYOUT
+=================================================== */
+
+.auth-container{
+  display:flex;
+  min-height:100vh;
+}
+
+/* ===================================================
+   LEFT
+=================================================== */
+
+.auth-left{
+  flex:1;
+  position:relative;
+
+  background:
+  linear-gradient(
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.75)
+  ),
+  url(../gambar/bg.jpeg);
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:white;
+}
+
+.left-content{
+  position:relative;
+  z-index:2;
+  width:80%;
+}
+
+.left-content h1{
+  font-size:4rem;
+  margin-bottom:20px;
+  color:#f4c542;
+}
+
+.left-content p{
+  font-size:1.2rem;
+  line-height:1.8;
+  color:#ddd;
+}
+
+/* ===================================================
+   RIGHT
+=================================================== */
+
+.auth-right{
+  flex:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:40px;
+}
+
+.form-box{
+  width:100%;
+  max-width:450px;
+
+  background:white;
+  padding:40px;
+
+  border-radius:24px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===================================================
+   TOGGLE
+=================================================== */
+
+.toggle-group{
+  display:flex;
+  margin-bottom:35px;
+
+  background:#f3f3f3;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.toggle-btn{
+  flex:1;
+  padding:14px;
+
+  border:none;
+  background:none;
+
+  cursor:pointer;
+  font-size:1rem;
+  font-weight:600;
+
+  transition:0.3s;
+}
+
+.toggle-btn.active{
+  background:#f4c542;
+  color:#111;
+}
+
+/* ===================================================
+   FORM
+=================================================== */
+
+.form{
+  display:none;
+}
+
+.active-form{
+  display:block;
+}
+
+.form h2{
+  margin-bottom:25px;
+  font-size:2rem;
+  color:#222;
+}
+
+.input-group{
+  margin-bottom:20px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+  color:#555;
+  font-weight:600;
+}
+
+.input-group input{
+  width:100%;
+  padding:14px;
+
+  border:1px solid #ddd;
+  border-radius:12px;
+
+  font-size:1rem;
+  transition:0.3s;
+}
+
+.input-group input:focus{
+  outline:none;
+  border-color:#f4c542;
+}
+
+/* ===================================================
+   BUTTON
+=================================================== */
+
+.submit-btn{
+  width:100%;
+  padding:15px;
+
+  border:none;
+  border-radius:12px;
+
+  background:#f4c542;
+  color:#111;
+
+  font-size:1rem;
+  font-weight:700;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.submit-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* ===================================================
+   MESSAGE
+=================================================== */
+
+#message-box{
+  margin-top:20px;
+  text-align:center;
+  font-weight:600;
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+
+@media(max-width:900px){
+
+  .auth-container{
+    flex-direction:column;
+  }
+
+  .auth-left{
+    min-height:300px;
+  }
+
+  .left-content h1{
+    font-size:3rem;
+  }
+
+}
+
+/* ==========================================
+   POPUP RESET PASSWORD
+========================================== */
+
+.popup-overlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.6);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  z-index:999;
+}
+
+.popup-overlay.show{
+  display:flex;
+}
+
+.popup-box{
+  background:white;
+
+  width:90%;
+  max-width:400px;
+
+  padding:35px;
+
+  border-radius:24px;
+
+  position:relative;
+}
+
+.popup-box h2{
+  margin-bottom:15px;
+}
+
+.popup-box p{
+  color:#666;
+  margin-bottom:20px;
+}
+
+.popup-box input{
+  width:100%;
+  padding:14px;
+
+  border:1px solid #ddd;
+  border-radius:12px;
+
+  margin-bottom:20px;
+}
+
+.close-popup{
+  position:absolute;
+  top:15px;
+  right:15px;
+
+  border:none;
+  background:none;
+
+  font-size:1.2rem;
+  cursor:pointer;
+}
+
+.forgot-wrapper{
+  margin-top:15px;
+  text-align:center;
+}
+
+.forgot-wrapper a{
+  color:#666;
+  text-decoration:none;
+  font-size:0.95rem;
+}
+
+.forgot-wrapper a:hover{
+  color:#f4c542;
+}

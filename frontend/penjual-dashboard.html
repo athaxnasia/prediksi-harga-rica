@@ -1,0 +1,273 @@
+# `penjual-dashboard.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Penjual - RicaHolic</title>
+
+  <link rel="stylesheet" href="css/penjual.css">
+
+  <!-- CHART.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+
+    <div>
+
+      <div class="brand">
+        🌶️ RicaHolic
+      </div>
+
+      <ul class="sidebar-menu">
+
+        <li>
+          <a href="#" class="active">
+            Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="#input-harga">
+            Input Harga
+          </a>
+        </li>
+
+        <li>
+          <a href="#tren">
+            Tren Penjualan
+          </a>
+        </li>
+
+        <li>
+          <a href="#riwayat">
+            Riwayat Input
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="sidebar-bottom">
+      Dashboard Penjual RicaHolic
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+
+      <div>
+        <h1>Dashboard Penjual</h1>
+        <p>
+          Selamat datang kembali 👋
+        </p>
+      </div>
+
+      <div class="seller-info">
+
+        <div>
+          <strong>
+            Penjual Rica
+          </strong>
+          <p>
+            penjual@gmail.com
+          </p>
+        </div>
+
+        <div class="seller-avatar">
+          P
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="summary-grid">
+
+      <div class="summary-card">
+        <span>💰</span>
+        <h3>Harga Hari Ini</h3>
+        <p>
+          Rp 58.000
+        </p>
+      </div>
+
+      <div class="summary-card">
+        <span>📈</span>
+        <h3>Total Input</h3>
+        <p>
+          28
+        </p>
+      </div>
+
+      <div class="summary-card">
+        <span>🔥</span>
+        <h3>Tren Minggu Ini</h3>
+        <p>
+          Naik
+        </p>
+      </div>
+
+    </div>
+
+    <section class="input-section" id="input-harga">
+
+      <h2 class="section-title">
+        Input Harga Harian
+      </h2>
+
+      <div class="input-grid">
+
+        <div class="input-group">
+          <label>Tanggal</label>
+          <input type="date" id="tanggal-input">
+        </div>
+
+        <div class="input-group">
+          <label>Harga Rica (Rp/kg)</label>
+          <input type="number" id="harga-input" placeholder="Contoh: 58000">
+        </div>
+
+      </div>
+
+      <button class="submit-btn" id="btn-submit">
+        Simpan Harga
+      </button>
+
+      <div id="message-box"></div>
+
+    </section>
+
+    <section class="rekomendasi-box">
+
+      <h2>
+        🤖 Rekomendasi Harga AI
+      </h2>
+
+      <p>
+        Berdasarkan prediksi model Random Forest,
+        harga rica wajar hari ini berada di sekitar:
+      </p>
+
+      <div class="harga-rekomendasi">
+        Rp 57.000 - Rp 60.000
+      </div>
+
+      <small>
+        Estimasi berdasarkan tren harga,
+        cuaca, dan histori data sebelumnya.
+      </small>
+
+    </section>
+
+    <section class="chart-section" id="tren">
+
+      <h2 class="section-title">
+        Grafik Tren Harga Penjualan
+      </h2>
+
+<div class="chart-container">
+
+  <div class="chart-bars">
+
+    <div class="bar-group">
+      <div class="bar" style="height:100px;"></div>
+      <span>Sen</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:140px;"></div>
+      <span>Sel</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:160px;"></div>
+      <span>Rab</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:180px;"></div>
+      <span>Kam</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:170px;"></div>
+      <span>Jum</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:210px;"></div>
+      <span>Sab</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:230px;"></div>
+      <span>Min</span>
+    </div>
+
+  </div>
+
+</div>
+
+    </section>
+
+    <section class="table-section" id="riwayat">
+
+      <h2 class="section-title">
+        Riwayat Input Harga
+      </h2>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Tanggal</th>
+              <th>Harga</th>
+              <th>Status</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="table-body">
+
+            <tr>
+              <td>14 Mei 2026</td>
+              <td>Rp 56.000</td>
+              <td class="status-normal">
+                Normal
+              </td>
+            </tr>
+
+            <tr>
+              <td>15 Mei 2026</td>
+              <td>Rp 58.000</td>
+              <td class="status-naik">
+                Naik
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="js/penjual.js"></script>
+
+</body>
+</html>
+

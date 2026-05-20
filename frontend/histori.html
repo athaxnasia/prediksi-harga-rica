@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data Historis & Tren - RicaHolic</title>
+
+  <link rel="stylesheet" href="css/histori.css">
+</head>
+<body>
+
+  <!-- =========================================
+       NAVBAR
+  ========================================== -->
+  <header id="site-header">
+
+    <nav class="navbar">
+
+      <a href="index.html" class="brand">
+        🌶️ RicaHolic
+      </a>
+
+      <ul class="nav-menu">
+
+        <li>
+          <a href="index.html">
+            Beranda
+          </a>
+        </li>
+
+        <li>
+          <a href="histori.html" class="active">
+            Histori
+          </a>
+        </li>
+
+        <li>
+          <a href="gamifikasi.html">
+            Game
+          </a>
+        </li>
+
+        <li>
+          <a href="login.html" class="btn-login">
+            Masuk
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- =========================================
+       HERO
+  ========================================== -->
+  <section id="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Data Historis & Tren Harga Rica
+      </h1>
+
+      <p>
+        Pantau perubahan harga Rica Kota Manado
+        dari waktu ke waktu secara interaktif.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       FILTER
+  ========================================== -->
+  <section class="filter-section">
+
+    <div class="container">
+
+      <div class="filter-box">
+
+        <!-- FILTER BULAN -->
+        <div class="filter-group">
+
+          <label>Pilih Bulan</label>
+
+          <select id="filter-bulan">
+
+            <option>Januari</option>
+            <option>Februari</option>
+            <option>Maret</option>
+            <option>April</option>
+            <option>Mei</option>
+
+          </select>
+
+        </div>
+
+        
+
+        <!-- BUTTON -->
+        <button id="btn-filter">
+          Tampilkan
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       CARD SUMMARY
+  ========================================== -->
+  <section class="summary-section">
+
+    <div class="container">
+
+      <div class="summary-grid">
+
+        <!-- CARD -->
+        <div class="summary-card">
+
+          <span class="card-icon">📈</span>
+
+          <h3>Harga Tertinggi</h3>
+
+          <p id="harga-tertinggi">
+            Rp 75.000
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="summary-card">
+
+          <span class="card-icon">📉</span>
+
+          <h3>Harga Terendah</h3>
+
+          <p id="harga-terendah">
+            Rp 45.000
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="summary-card">
+
+          <span class="card-icon">💰</span>
+
+          <h3>Rata-rata</h3>
+
+          <p id="harga-rata">
+            Rp 58.000
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       TREND CHART
+  ========================================== -->
+  <section class="chart-section">
+
+    <div class="container">
+
+      <div class="chart-box">
+
+        <div class="chart-header">
+
+          <h2>
+            Grafik Tren Harga Rica
+          </h2>
+
+        </div>
+
+        <!-- CHART -->
+        <div class="chart-area">
+
+<div class="chart-container">
+
+  <div class="chart-bars">
+
+    <div class="bar-group">
+      <div class="bar" style="height:110px;"></div>
+      <span>10 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:130px;"></div>
+      <span>11 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:125px;"></div>
+      <span>12 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:150px;"></div>
+      <span>13 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:170px;"></div>
+      <span>14 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:190px;"></div>
+      <span>15 Mei</span>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar" style="height:210px;"></div>
+      <span>16 Mei</span>
+    </div>
+
+  </div>
+
+</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       TABLE DATA
+  ========================================== -->
+  <section class="table-section">
+
+    <div class="container">
+
+      <div class="table-box">
+
+        <div class="table-header">
+
+          <h2>
+            Data Historis Harga
+          </h2>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>Tanggal</th>
+                <th>Harga</th>
+                <th>Status</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="table-body">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+  <footer>
+
+    <p>
+      © 2026 RicaHolic Manado
+    </p>
+
+  </footer>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- JS -->
+  <script src="js/histori.js"></script>
+
+</body>
+</html>

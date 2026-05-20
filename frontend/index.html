@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RicaHolic — Beranda</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR / HEADER
+       Konten : logo, navigasi utama, tombol masuk
+       Catatan: class "nav-open" ditambahkan lewat JS saat
+                menu hamburger diklik (mobile)
+  ============================================================ -->
+  <header id="site-header">
+    <nav id="main-nav">
+      <div class="nav-container">
+
+        <!-- Logo & nama aplikasi -->
+        <a href="index.html" class="nav-brand">
+          <span class="brand-icon">🌶️</span>
+          <span class="brand-name">RicaHolic</span>
+          <span class="brand-sub">Manado</span>
+        </a>
+
+        <!-- Tombol hamburger (mobile) -->
+        <button
+          class="nav-hamburger"
+          id="btn-hamburger"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <!-- 3 garis hamburger, digambar murni dengan span -->
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <!-- Menu navigasi -->
+        <ul class="nav-menu" id="nav-menu" role="list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link nav-link--active"> Beranda </a>
+          </li>
+          <li class="nav-item">
+            <a href="histori.html" class="nav-link"> Data Historis & Tren </a>
+          </li>
+          <li class="nav-item">
+            <a href="gamifikasi.html" class="nav-link"> Minigame: Tebak Harga Rica!</a>
+          </li>
+          <li class="nav-item nav-item--cta">
+            <a href="login.html" class="btn-masuk"> Masuk/Daftar </a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  </header>
+  <!-- /NAVBAR -->
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-container">
+
+      <!-- Teks utama -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Pantau dan Prediksi<br />
+          Harga Rica<br />
+          <span class="hero-highlight">Kota Manado</span> <!-- hero highlight yang ini for kase ubah styling yang khusus kata 'kota manado' -->
+        </h1>
+        <p class="hero-desc">
+          Satu-satunya situs web yang menyediakan informasi harga sekaligus prediksi harga Rica di Kota Manado.
+          <br/> Dapatkan informasi harga rica sebulan yang lalu, hari ini, dan bahkan besok hari disini!
+        </p>
+        <div class="hero-cta-group">
+          <a href="#kartu-harga" class="btn btn--primary">
+            Lihat Harga Hari Ini
+          </a>
+          <a href="histori.html" class="btn btn--secondary">
+            Lihat Histori
+          </a>
+        </div>
+      </div>
+
+      <!-- Dekorasi / badge visual kanan -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-badge">
+          <span class="hero-badge-icon">🌶️</span>
+          <span class="hero-badge-text">Real-time<br />Price Data</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /HERO -->
+
+
+  <!-- ============================================================
+       SECTION: 3 KARTU RINGKASAN
+       Kartu 1 : Harga rica hari ini
+       Kartu 2 : Prediksi harga besok / 7 hari
+       Kartu 3 : Info cuaca Manado
+       Semua data diisi oleh beranda.js via fetch()
+  ============================================================ -->
+  <section id="kartu-harga" class="section">
+    <div class="section-container">
+      <div class="kartu-grid">
+
+        <!-- ── Kartu 1: Harga Hari Ini ── -->
+        <div class="kartu kartu--harga" id="kartu-harga-sekarang">
+
+          <div class="kartu-header">
+            <span class="kartu-ikon">💰</span>
+            <span class="kartu-label">Harga Rica Hari Ini</span>
+          </div>
+
+          <div class="kartu-body">
+            <!-- State: loading -->
+            <div class="state-loading" id="loading-harga">
+              <span class="spinner"></span>
+              <span>Memuat data...</span>
+            </div>
+
+            <!-- State: data tersedia (diisi JS) -->
+            <div class="kartu-nilai" id="nilai-harga" hidden>
+              <span class="harga-angka" id="harga-hari-ini">—</span>
+              <span class="harga-satuan">Rp / kg</span>
+            </div>
+            <div class="kartu-meta" id="meta-harga" hidden>
+              <span class="meta-tanggal" id="tanggal-harga">—</span>
+              <span class="meta-pasar" id="pasar-harga">—</span>
+            </div>
+          </div>
+
+          <div class="kartu-footer">
+            <!--
+              Badge status diisi JS dengan salah satu class:
+              badge--tinggi | badge--normal | badge--rendah
+            -->
+            <span class="badge-status" id="badge-status-harga" hidden></span>
+          </div>
+
+        </div>
+        <!-- /Kartu 1 -->
+
+
+        <!-- ── Kartu 2: Prediksi Harga ── -->
+        <div class="kartu kartu--prediksi" id="kartu-prediksi">
+
+          <div class="kartu-header">
+            <span class="kartu-ikon">📈</span>
+            <span class="kartu-label">Prediksi Harga</span>
+          </div>
+
+          <!-- Toggle: besok / 7 hari -->
+          <div class="prediksi-toggle" id="prediksi-toggle" role="group" aria-label="Pilih rentang prediksi">
+            <button
+              class="btn-toggle btn-toggle--active"
+              id="btn-prediksi-besok"
+              data-range="besok"
+              aria-pressed="true"
+            >Besok</button>
+            <button
+              class="btn-toggle"
+              id="btn-prediksi-minggu"
+              data-range="minggu"
+              aria-pressed="false"
+            >7 Hari</button>
+          </div>
+
+          <div class="kartu-body">
+            <div class="state-loading" id="loading-prediksi">
+              <span class="spinner"></span>
+              <span>Memuat prediksi...</span>
+            </div>
+
+            <div class="kartu-nilai prediksi-nilai" id="nilai-prediksi" hidden>
+              <span class="prediksi-range" id="prediksi-low">—</span>
+              <span class="prediksi-separator">–</span>
+              <span class="prediksi-range" id="prediksi-high">—</span>
+              <span class="harga-satuan">Rp / kg</span>
+            </div>
+          </div>
+
+          <div class="kartu-footer">
+            <span class="badge-status badge-status--prediksi" id="badge-status-prediksi" hidden></span>
+          </div>
+
+        </div>
+        <!-- /Kartu 2 -->
+
+
+        <!-- ── Kartu 3: Cuaca Manado ── -->
+        <div class="kartu kartu--cuaca" id="kartu-cuaca">
+
+          <div class="kartu-header">
+            <span class="kartu-ikon">⛅</span>
+            <span class="kartu-label">Cuaca Manado</span>
+          </div>
+
+          <div class="kartu-body">
+            <div class="state-loading" id="loading-cuaca">
+              <span class="spinner"></span>
+              <span>Memuat cuaca...</span>
+            </div>
+
+            <!--
+              Tiga item cuaca: suhu, kelembapan, curah hujan
+              Diisi oleh beranda.js dari Open-Meteo API
+            -->
+            <div class="cuaca-grid" id="cuaca-grid" hidden>
+
+              <div class="cuaca-item">
+                <span class="cuaca-ikon">🌡️</span>
+                <div class="cuaca-data">
+                  <span class="cuaca-nilai" id="cuaca-suhu">—</span>
+                  <span class="cuaca-satuan">°C</span>
+                </div>
+                <span class="cuaca-nama">Suhu</span>
+              </div>
+
+              <div class="cuaca-item">
+                <span class="cuaca-ikon">💧</span>
+                <div class="cuaca-data">
+                  <span class="cuaca-nilai" id="cuaca-kelembapan">—</span>
+                  <span class="cuaca-satuan">%</span>
+                </div>
+                <span class="cuaca-nama">Kelembapan</span>
+              </div>
+
+              <div class="cuaca-item">
+                <span class="cuaca-ikon">🌧️</span>
+                <div class="cuaca-data">
+                  <span class="cuaca-nilai" id="cuaca-hujan">—</span>
+                  <span class="cuaca-satuan">mm</span>
+                </div>
+                <span class="cuaca-nama">Curah Hujan</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="kartu-footer">
+            <small class="cuaca-sumber">
+              Sumber: Open-Meteo API · Manado (1.47°N, 124.84°E)
+            </small>
+          </div>
+
+        </div>
+        <!-- /Kartu 3 -->
+
+      </div>
+    </div>
+  </section>
+  <!-- /KARTU RINGKASAN -->
+
+
+  <!-- ============================================================
+       SECTION: CTA GAMIFIKASI
+       Ajakan ke halaman tebak harga
+  ============================================================ -->
+  <section id="cta-gamifikasi" class="section">
+    <div class="section-container">
+      <div class="cta-box">
+        <span class="cta-emoji" aria-hidden="true">🏆</span>
+        <h2 class="cta-judul">Coba Tebak Harga Rica Besok!</h2>
+        <p class="cta-deskripsi">
+          Ingin mengasah skill tebak-tebakanmu? 
+          <br/> Ayo main game tebak-tebakan harga Rica dengan AI kami dan ayo buat runtutan (streak) bersama!
+        </p>
+        <a href="gamifikasi.html" class="btn btn--gamifikasi">
+          Main Sekarang
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- /CTA GAMIFIKASI -->
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <!-- Kolom 1: Brand & deskripsi -->
+        <div class="footer-col footer-col--brand">
+          <p class="footer-matakuliah">
+            Proyek Mata Kuliah Topik Khusus Teknik Informatika UNSRAT
+          </p>
+        </div>
+
+        <!-- Kolom 2: Navigasi -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Navigasi</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="histori.html">Histori Harga</a></li>
+            <li><a href="gamifikasi.html">Tebak Harga</a></li>
+            <li><a href="login.html">Masuk</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Teknologi -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Teknologi</h4>
+          <ul class="footer-links" role="list">
+            <li>✅ Random Forest ML</li>
+            <li>✅ MAPE 6,62%</li>
+            <li>✅ Open-Meteo API</li>
+            <li>✅ PHP + MySQL Backend</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Garis bawah footer -->
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> RicaWatch Manado.
+          Dibuat untuk keperluan akademik.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+
+  <!-- ============================================================
+       TOMBOL KEMBALI KE ATAS
+       Muncul setelah scroll 300px ke bawah (diatur di beranda.js)
+  ============================================================ -->
+  <button
+    id="btn-back-to-top"
+    class="btn-back-to-top"
+    aria-label="Kembali ke atas"
+    hidden
+  >&#8679;</button>
+
+
+  <!-- ============================================================
+       SCRIPTS
+       Hanya beranda.js bawaan project. Tidak ada eksternal skrip.
+  ============================================================ -->
+  <script src="js/index.js"></script>
+
+</body>
+</html>
