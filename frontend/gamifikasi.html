@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>RicaHolic — Minigame Tebak Harga Rica</title>
+
+  <link rel="stylesheet" href="css/gamifikasi.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+
+  <header id="site-header">
+
+    <nav id="main-nav">
+
+      <div class="nav-container">
+
+        <!-- BRAND -->
+
+        <a href="index.html" class="nav-brand">
+
+          <span class="brand-icon">🌶️</span>
+
+          <span class="brand-name">
+            RicaHolic
+          </span>
+
+          <span class="brand-sub">
+            Manado
+          </span>
+
+        </a>
+
+        <!-- HAMBURGER -->
+
+        <button
+          class="nav-hamburger"
+          id="btn-hamburger"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+
+        </button>
+
+        <!-- MENU -->
+
+        <ul class="nav-menu" id="nav-menu">
+
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              Beranda
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="histori.html" class="nav-link">
+              Data Historis & Tren
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              href="gamifikasi.html"
+              class="nav-link nav-link--active"
+            >
+              Minigame: Tebak Harga Rica
+            </a>
+          </li>
+
+          <li class="nav-item nav-item--cta">
+            <a href="login.html" class="btn-masuk">
+              Masuk/Daftar
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+
+  <section class="section section--hero-mini">
+
+    <div class="section-container">
+
+      <div class="hero-mini">
+
+        <span class="hero-mini__emoji">
+          🎮
+        </span>
+
+        <h1 class="hero-mini__title">
+          Minigame Tebak Harga Rica
+        </h1>
+
+        <p class="hero-mini__desc">
+          Tebak harga Rica Kota Manado untuk besok hari dan kumpulkan poin tertinggi!
+          Semakin dekat tebakanmu dengan prediksi AI, semakin besar skor yang didapat.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       STATUS PLAYER
+  ============================================================ -->
+
+  <section class="section">
+
+    <div class="section-container">
+
+      <div class="status-grid">
+
+        <!-- TOTAL POIN -->
+
+        <div class="kartu kartu--status">
+
+          <div class="kartu-header">
+
+            <span class="kartu-ikon">
+              🏆
+            </span>
+
+            <span class="kartu-label">
+              Total Poin
+            </span>
+
+          </div>
+
+          <div class="kartu-body">
+
+            <span
+              class="status-value"
+              id="player-total-point"
+            >
+              0
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- STREAK -->
+
+        <div class="kartu kartu--status">
+
+          <div class="kartu-header">
+
+            <span class="kartu-ikon">
+              🔥
+            </span>
+
+            <span class="kartu-label">
+              Daily Streak
+            </span>
+
+          </div>
+
+          <div class="kartu-body">
+
+            <span
+              class="status-value"
+              id="player-streak"
+            >
+              0
+            </span>
+
+            <span class="status-sub">
+              hari berturut-turut
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       FORM TEBAK HARGA
+  ============================================================ -->
+
+  <section class="section" id="section-main-game">
+
+    <div class="section-container">
+
+      <div class="game-box">
+
+        <h2 class="game-title">
+          Tebak Harga Rica Besok
+        </h2>
+
+        <!-- PESAN SUDAH MAIN -->
+
+        <div
+          class="alert alert--sukses"
+          id="alert-already-played"
+          hidden
+        >
+          Kamu sudah main hari ini, kembali besok!
+        </div>
+
+        <!-- FORM -->
+
+        <form
+          id="form-tebak-harga"
+          onsubmit="return false;"
+        >
+
+          <div class="form-group">
+
+            <label
+              for="input-tebakan"
+              class="form-label"
+            >
+              Masukkan tebakan harga (Rp/kg)
+            </label>
+
+            <input
+              type="number"
+              id="input-tebakan"
+              class="form-input"
+              placeholder="Contoh: 58000"
+              min="0"
+              required
+            />
+
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn--primary"
+            id="btn-submit-tebakan"
+          >
+            Submit Tebakan
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       HASIL TEBAKAN
+  ============================================================ -->
+
+  <section
+    class="section"
+    id="section-hasil"
+    hidden
+  >
+
+    <div class="section-container">
+
+      <div class="hasil-box">
+
+        <h2 class="hasil-title">
+          Hasil Tebakanmu
+        </h2>
+
+        <div class="hasil-grid">
+
+          <!-- TEBAKAN USER -->
+
+          <div class="hasil-item">
+
+            <span class="hasil-label">
+              Tebakan Kamu
+            </span>
+
+            <span
+              class="hasil-value"
+              id="hasil-user"
+            >
+              -
+            </span>
+
+          </div>
+
+          <!-- PREDIKSI MODEL -->
+
+          <div class="hasil-item">
+
+            <span class="hasil-label">
+              Prediksi AI
+            </span>
+
+            <span
+              class="hasil-value"
+              id="hasil-model"
+            >
+              -
+            </span>
+
+          </div>
+
+          <!-- SELISIH -->
+
+          <div class="hasil-item">
+
+            <span class="hasil-label">
+              Selisih
+            </span>
+
+            <span
+              class="hasil-value"
+              id="hasil-selisih"
+            >
+              -
+            </span>
+
+          </div>
+
+          <!-- SKOR -->
+
+          <div class="hasil-item hasil-item--score">
+
+            <span class="hasil-label">
+              Skor
+            </span>
+
+            <span
+              class="hasil-score"
+              id="hasil-skor"
+            >
+              0
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       RIWAYAT TEBAKAN
+  ============================================================ -->
+
+  <section class="section section--alt">
+
+    <div class="section-container">
+
+      <div class="riwayat-box">
+
+        <div class="section-heading">
+
+          <h2>
+            Riwayat Tebakan Terakhir
+          </h2>
+
+          <p>
+            Menampilkan 5 permainan terakhir dari localStorage
+          </p>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table class="riwayat-table">
+
+            <thead>
+
+              <tr>
+                <th>Tanggal</th>
+                <th>Tebakan</th>
+                <th>Prediksi AI</th>
+                <th>Selisih</th>
+                <th>Skor</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="riwayat-body">
+
+              <!-- DIISI JS -->
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <!-- STATE KOSONG -->
+
+        <div
+          class="state-kosong"
+          id="state-riwayat-kosong"
+          hidden
+        >
+          Belum ada riwayat permainan.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+
+  <footer id="site-footer">
+
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <div class="footer-col footer-col--brand">
+
+          <p class="footer-matakuliah">
+            Proyek Mata Kuliah Topik Khusus Teknik Informatika UNSRAT
+          </p>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4 class="footer-heading">
+            Navigasi
+          </h4>
+
+          <ul class="footer-links">
+
+            <li>
+              <a href="index.html">Beranda</a>
+            </li>
+
+            <li>
+              <a href="histori.html">Histori Harga</a>
+            </li>
+
+            <li>
+              <a href="gamifikasi.html">
+                Tebak Harga
+              </a>
+            </li>
+
+            <li>
+              <a href="login.html">
+                Masuk
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4 class="footer-heading">
+            Teknologi
+          </h4>
+
+          <ul class="footer-links">
+
+            <li>✅ Random Forest ML</li>
+            <li>✅ MAPE 6,62%</li>
+            <li>✅ PHP + MySQL</li>
+            <li>✅ JavaScript ES6+</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <p class="footer-copy">
+
+          &copy;
+          <span id="footer-year"></span>
+
+          RicaHolic Manado.
+          Dibuat untuk keperluan akademik.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- ============================================================
+       BACK TO TOP
+  ============================================================ -->
+
+  <button
+    id="btn-back-to-top"
+    class="btn-back-to-top"
+    aria-label="Kembali ke atas"
+    hidden
+  >
+    &#8679;
+  </button>
+
+  <!-- ============================================================
+       SCRIPT
+  ============================================================ -->
+
+  <script src="js/gamifikasi.js"></script>
+
+</body>
+</html>

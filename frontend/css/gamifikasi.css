@@ -1,0 +1,609 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",sans-serif;
+  background:#f5f3ef;
+  color:#111;
+  line-height:1.6;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+.section{
+  padding:90px 20px;
+}
+
+.section--alt{
+  background:#ece7df;
+}
+
+.section-container{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+#site-header{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+
+  background:#11120d;
+
+  z-index:999;
+}
+
+#main-nav{
+  width:100%;
+}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+
+  padding:18px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+  font-size:1.4rem;
+}
+
+.brand-name{
+  font-size:1.5rem;
+  font-weight:800;
+
+  color:#f4c542;
+}
+
+.brand-sub{
+  color:white;
+  font-weight:500;
+}
+
+.nav-menu{
+  list-style:none;
+
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.nav-link{
+  color:#ddd;
+  transition:0.3s;
+}
+
+.nav-link:hover,
+.nav-link--active{
+  color:#f4c542;
+}
+
+.btn-masuk{
+  background:#f4c542;
+  color:#111;
+
+  padding:12px 18px;
+
+  border-radius:12px;
+
+  font-weight:700;
+
+  transition:0.3s;
+}
+
+.btn-masuk:hover{
+  transform:translateY(-2px);
+}
+
+.nav-hamburger{
+  display:none;
+
+  background:none;
+  border:none;
+
+  cursor:pointer;
+}
+
+.hamburger-bar{
+  display:block;
+
+  width:26px;
+  height:3px;
+
+  background:white;
+
+  margin:5px 0;
+
+  border-radius:999px;
+}
+
+/* =========================================================
+   HERO MINI
+========================================================= */
+
+.section--hero-mini{
+  padding-top:160px;
+  padding-bottom:80px;
+}
+
+.hero-mini{
+  text-align:center;
+}
+
+.hero-mini__emoji{
+  font-size:5rem;
+  display:block;
+
+  margin-bottom:20px;
+}
+
+.hero-mini__title{
+  font-size:4rem;
+  font-weight:800;
+
+  margin-bottom:25px;
+}
+
+.hero-mini__desc{
+  max-width:760px;
+  margin:auto;
+
+  color:#555;
+
+  font-size:1.1rem;
+  line-height:1.9;
+}
+
+/* =========================================================
+   STATUS PLAYER
+========================================================= */
+
+.status-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(300px,1fr));
+
+  gap:25px;
+}
+
+.kartu{
+  background:white;
+
+  border-radius:24px;
+
+  padding:35px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08);
+}
+
+.kartu-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin-bottom:20px;
+}
+
+.kartu-ikon{
+  font-size:1.5rem;
+}
+
+.kartu-label{
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+.status-value{
+  font-size:4rem;
+  font-weight:800;
+
+  display:block;
+
+  margin-bottom:10px;
+}
+
+.status-sub{
+  color:#666;
+}
+
+/* =========================================================
+   GAME BOX
+========================================================= */
+
+.game-box{
+  background:white;
+
+  padding:45px;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08);
+}
+
+.game-title{
+  font-size:2.2rem;
+  margin-bottom:30px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group{
+  margin-bottom:25px;
+}
+
+.form-label{
+  display:block;
+
+  margin-bottom:12px;
+
+  font-weight:700;
+}
+
+.form-input{
+  width:100%;
+
+  padding:18px;
+
+  border-radius:16px;
+  border:1px solid #ddd;
+
+  font-size:1rem;
+
+  background:#fafafa;
+}
+
+.form-input:focus{
+  outline:none;
+  border-color:#f4c542;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border:none;
+
+  border-radius:14px;
+
+  padding:16px 28px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.btn--primary{
+  background:#f4c542;
+  color:#111;
+}
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert{
+  padding:18px 22px;
+
+  border-radius:16px;
+
+  margin-bottom:25px;
+}
+
+.alert--sukses{
+  background:#d4edda;
+  color:#155724;
+}
+
+/* =========================================================
+   HASIL
+========================================================= */
+
+.hasil-box{
+  background:white;
+
+  padding:45px;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08);
+}
+
+.hasil-title{
+  font-size:2rem;
+  margin-bottom:35px;
+}
+
+.hasil-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:25px;
+}
+
+.hasil-item{
+  background:#f8f8f8;
+
+  padding:28px;
+
+  border-radius:18px;
+}
+
+.hasil-label{
+  display:block;
+
+  margin-bottom:14px;
+
+  color:#666;
+}
+
+.hasil-value{
+  font-size:1.6rem;
+  font-weight:700;
+}
+
+.hasil-item--score{
+  background:#11120d;
+}
+
+.hasil-item--score .hasil-label{
+  color:#ddd;
+}
+
+.hasil-score{
+  font-size:3rem;
+  font-weight:800;
+
+  color:#f4c542;
+}
+
+/* =========================================================
+   RIWAYAT
+========================================================= */
+
+.riwayat-box{
+  background:white;
+
+  padding:45px;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08);
+}
+
+.section-heading{
+  margin-bottom:30px;
+}
+
+.section-heading h2{
+  margin-bottom:10px;
+}
+
+.section-heading p{
+  color:#666;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+.riwayat-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.riwayat-table thead{
+  background:#f4c542;
+}
+
+.riwayat-table th,
+.riwayat-table td{
+  padding:18px;
+  text-align:left;
+}
+
+.riwayat-table tbody tr{
+  border-bottom:1px solid #eee;
+}
+
+/* =========================================================
+   STATE KOSONG
+========================================================= */
+
+.state-kosong{
+  text-align:center;
+
+  padding:40px;
+
+  color:#777;
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.btn-back-to-top{
+  position:fixed;
+
+  right:25px;
+  bottom:25px;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#11120d;
+  color:white;
+
+  font-size:1.3rem;
+
+  cursor:pointer;
+
+  z-index:999;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+#site-footer{
+  background:#11120d;
+  color:white;
+
+  padding-top:70px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+
+  padding:0 20px;
+}
+
+.footer-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:40px;
+}
+
+.footer-heading{
+  margin-bottom:20px;
+}
+
+.footer-links{
+  list-style:none;
+}
+
+.footer-links li{
+  margin-bottom:12px;
+}
+
+.footer-links a{
+  color:#ddd;
+}
+
+.footer-links a:hover{
+  color:#f4c542;
+}
+
+.footer-bottom{
+  border-top:1px solid #333;
+
+  margin-top:45px;
+
+  padding:25px 0;
+
+  text-align:center;
+}
+
+.footer-copy{
+  color:#bbb;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+  .nav-hamburger{
+    display:block;
+  }
+
+  .nav-menu{
+    display:none;
+  }
+
+  .hero-mini__title{
+    font-size:2.5rem;
+  }
+
+  .hero-mini__desc{
+    font-size:1rem;
+  }
+
+  .game-box,
+  .hasil-box,
+  .riwayat-box,
+  .kartu{
+    padding:25px;
+  }
+
+  .status-value{
+    font-size:3rem;
+  }
+
+  .hasil-score{
+    font-size:2.2rem;
+  }
+
+}
