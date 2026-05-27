@@ -54,17 +54,12 @@ input{
 /* =========================================================
    NAVBAR
 ========================================================= */
-
 #site-header{
-  position:fixed;
+  position:sticky;
   top:0;
-  left:0;
-
-  width:100%;
-
-  background:#11120d;
-
   z-index:999;
+  background:#11120d;
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 #main-nav{
@@ -72,66 +67,70 @@ input{
 }
 
 .nav-container{
-  max-width:1200px;
+  width:90%;
+  max-width:1300px;
   margin:auto;
-
-  padding:18px 20px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
+  padding:18px 0;
 }
 
+/* BRAND */
 .nav-brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
+  text-decoration:none;
 }
 
 .brand-icon{
-  font-size:1.4rem;
+  font-size:1.2rem;
 }
 
 .brand-name{
-  font-size:1.5rem;
-  font-weight:800;
-
   color:#f4c542;
+  font-size:1.8rem;
+  font-weight:700;
 }
 
 .brand-sub{
-  color:white;
+  color:#fff;
+  font-size:1.3rem;
   font-weight:500;
 }
 
+/* MENU */
 .nav-menu{
-  list-style:none;
-
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:30px;
+  list-style:none;
 }
 
 .nav-link{
-  color:#ddd;
+  text-decoration:none;
+  color:#bdbdbd;
+  font-size:0.95rem;
   transition:0.3s;
 }
 
-.nav-link:hover,
-.nav-link--active{
+.nav-link:hover{
   color:#f4c542;
 }
 
+.nav-link--active{
+  color:#f4c542;
+  font-weight:600;
+}
+
 .btn-masuk{
+  text-decoration:none;
   background:#f4c542;
   color:#111;
-
-  padding:12px 18px;
-
-  border-radius:12px;
-
-  font-weight:700;
-
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:600;
   transition:0.3s;
 }
 
@@ -139,31 +138,36 @@ input{
   transform:translateY(-2px);
 }
 
+/* HAMBURGER */
 .nav-hamburger{
   display:none;
-
+  flex-direction:column;
+  gap:5px;
   background:none;
   border:none;
-
   cursor:pointer;
 }
 
 .hamburger-bar{
-  display:block;
-
-  width:26px;
+  width:25px;
   height:3px;
-
-  background:white;
-
-  margin:5px 0;
-
-  border-radius:999px;
+  background:#fff;
+  border-radius:3px;
 }
 
 /* =========================================================
    HERO MINI
 ========================================================= */
+.section_section--hero-mini{
+  background:
+  linear-gradient(to right,
+  rgba(0,0,0,0.85),
+  rgba(60,50,0,0.85)),
+  url(../gambar/bg.jpeg);
+  background-size:cover;
+  background-position:center;
+  padding:90px 0;
+}
 
 .section--hero-mini{
   padding-top:160px;
@@ -184,6 +188,7 @@ input{
 .hero-mini__title{
   font-size:4rem;
   font-weight:800;
+  color: #f4c542;
 
   margin-bottom:25px;
 }
@@ -192,7 +197,7 @@ input{
   max-width:760px;
   margin:auto;
 
-  color:#555;
+  color: #eee;
 
   font-size:1.1rem;
   line-height:1.9;

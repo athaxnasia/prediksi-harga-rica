@@ -1,87 +1,108 @@
-/* =========================================
-   DATA DUMMY
-========================================= */
 
-const historiData = [
+/* =========================================================
+   ELEMENT
+========================================================= */
 
-  {
-    tanggal:"01 Mei 2026",
-    harga:"Rp 55.000",
-    status:"Naik"
-  },
+const tableBody = document.getElementById("table-body");
+const btnFilter = document.getElementById("btn-filter");
 
-  {
-    tanggal:"02 Mei 2026",
-    harga:"Rp 58.000",
-    status:"Naik"
-  },
+/* =========================================================
+   LOAD HISTORI
+   Histori.get(range) → GET api/histori.php?range=30
+========================================================= */
 
-  {
-    tanggal:"03 Mei 2026",
-    harga:"Rp 52.000",
-    status:"Turun"
-  },
+let currentRange = 30;
 
-  {
-    tanggal:"04 Mei 2026",
-    harga:"Rp 60.000",
-    status:"Naik"
-  },
+async function loadHistori(range = 30) {
+  currentRange = range;
 
-  {
-    tanggal:"05 Mei 2026",
-    harga:"Rp 57.000",
-    status:"Turun"
+  tableBody.innerHTML =
+    `<tr><td colspan="3" style="text-align:center">Memuat data...</td></tr>`;
+
+  try {
+    const d    = await Histori.get(range);
+    const data = d?.histori ?? d ?? [];
+
+    tampilkanTable(data);
+
+  } catch (err) {
+    console.error("Gagal load histori:", err);
+    tableBody.innerHTML =
+      `<tr><td colspan="3" style="text-align:center;color:red">
+        Gagal memuat data histori
+      </td></tr>`;
   }
+}
 
-];
+/* =========================================================
+   RENDER TABLE
+========================================================= */
 
-/* =========================================
-   TABLE
-========================================= */
-
-const tableBody =
-document.getElementById("table-body");
-
-function tampilkanTable(){
-
+function tampilkanTable(data) {
   tableBody.innerHTML = "";
 
-  historiData.forEach((item) => {
+  if (!data || data.length === 0) {
+    tableBody.innerHTML =
+      `<tr><td colspan="3" style="text-align:center">
+        Belum ada data histori
+      </td></tr>`;
+    return;
+  }
 
+  data.forEach((item, idx) => {
     const row = document.createElement("tr");
 
+    /* Hitung status Naik/Turun dari item sebelumnya */
+    let status    = "—";
+    let statusCls = "";
+
+    if (idx < data.length - 1) {
+      const sekarang   = Number(item.harga ?? item.rata_rata ?? 0);
+      const sebelumnya = Number(
+        data[idx + 1].harga ?? data[idx + 1].rata_rata ?? 0
+      );
+
+      if (sekarang > sebelumnya) {
+        status    = "Naik";
+        statusCls = "status-naik";
+      } else if (sekarang < sebelumnya) {
+        status    = "Turun";
+        statusCls = "status-turun";
+      } else {
+        status    = "Stabil";
+        statusCls = "status-normal";
+      }
+    }
+
+    const tanggal = new Date(item.tanggal).toLocaleDateString("id-ID", {
+      day: "2-digit", month: "long", year: "numeric"
+    });
+
+    const hargaFmt = Number(item.harga ?? item.rata_rata ?? 0)
+      .toLocaleString("id-ID");
+
     row.innerHTML = `
-      <td>${item.tanggal}</td>
-      <td>${item.harga}</td>
-      <td class="${
-        item.status === "Naik"
-        ? "status-naik"
-        : "status-turun"
-      }">
-        ${item.status}
-      </td>
+      <td>${tanggal}</td>
+      <td>Rp ${hargaFmt}</td>
+      <td class="${statusCls}">${status}</td>
     `;
 
     tableBody.appendChild(row);
-
   });
-
 }
 
-tampilkanTable();
-
-/* =========================================
+/* =========================================================
    FILTER BUTTON
-========================================= */
-
-const btnFilter =
-document.getElementById("btn-filter");
+========================================================= */
 
 btnFilter.addEventListener("click", () => {
-
-  alert(
-    "Filter berhasil diterapkan"
-  );
-
+  const selectRange = document.getElementById("filter-range");
+  const range = selectRange ? Number(selectRange.value) : currentRange;
+  loadHistori(range);
 });
+
+/* =========================================================
+   INIT
+========================================================= */
+
+loadHistori(30);
