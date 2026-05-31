@@ -11,34 +11,21 @@
 
 <body>
 
-  <!-- ============================================================
+  <!-- =========================================
        NAVBAR
-  ============================================================ -->
-
-  <header id="site-header">
-
+  ========================================== -->
+    <header id="site-header">
     <nav id="main-nav">
-
       <div class="nav-container">
 
-        <!-- BRAND -->
-
+        <!-- Logo & nama aplikasi -->
         <a href="index.html" class="nav-brand">
-
           <span class="brand-icon">🌶️</span>
-
-          <span class="brand-name">
-            RicaHolic
-          </span>
-
-          <span class="brand-sub">
-            Manado
-          </span>
-
+          <span class="brand-name">RicaHolic</span>
+          <span class="brand-sub">Manado</span>
         </a>
 
-        <!-- HAMBURGER -->
-
+        <!-- Tombol hamburger (mobile) -->
         <button
           class="nav-hamburger"
           id="btn-hamburger"
@@ -46,57 +33,39 @@
           aria-expanded="false"
           aria-controls="nav-menu"
         >
-
+          <!-- 3 garis hamburger, digambar murni dengan span -->
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
-
         </button>
 
-        <!-- MENU -->
-
-        <ul class="nav-menu" id="nav-menu">
-
+        <!-- Menu navigasi -->
+        <ul class="nav-menu" id="nav-menu" role="list">
           <li class="nav-item">
-            <a href="index.html" class="nav-link">
-              Beranda
-            </a>
+            <a href="index.html" class="nav-link "> Beranda </a>
           </li>
-
           <li class="nav-item">
-            <a href="histori.html" class="nav-link">
-              Data Historis & Tren
-            </a>
+            <a href="histori.html" class="nav-link "> Data Historis & Tren </a>
           </li>
-
           <li class="nav-item">
-            <a
-              href="gamifikasi.html"
-              class="nav-link nav-link--active"
-            >
-              Minigame: Tebak Harga Rica
-            </a>
+            <a href="gamifikasi.html" class="nav-link nav-link--active"> Minigame: Tebak Harga Rica!</a>
           </li>
-
           <li class="nav-item nav-item--cta">
-            <a href="login.html" class="btn-masuk">
-              Masuk/Daftar
-            </a>
+            <a href="login.html" class="btn-masuk"> Masuk/Daftar </a>
           </li>
-
         </ul>
 
       </div>
-
     </nav>
-
   </header>
+  <!-- /NAVBAR -->
+
 
   <!-- ============================================================
        HERO
   ============================================================ -->
 
-  <section class="section section--hero-mini">
+  <section class="section_section--hero-mini">
 
     <div class="section-container">
 
@@ -529,7 +498,7 @@
   <!-- ============================================================
        SCRIPT
   ============================================================ -->
-
+  <script src="js/api.js"></script>
   <script src="js/gamifikasi.js"></script>
 
 </body>

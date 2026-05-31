@@ -13,45 +13,52 @@
   <!-- =========================================
        NAVBAR
   ========================================== -->
-  <header id="site-header">
+    <header id="site-header">
+    <nav id="main-nav">
+      <div class="nav-container">
 
-    <nav class="navbar">
+        <!-- Logo & nama aplikasi -->
+        <a href="index.html" class="nav-brand">
+          <span class="brand-icon">🌶️</span>
+          <span class="brand-name">RicaHolic</span>
+          <span class="brand-sub">Manado</span>
+        </a>
 
-      <a href="index.html" class="brand">
-        🌶️ RicaHolic
-      </a>
+        <!-- Tombol hamburger (mobile) -->
+        <button
+          class="nav-hamburger"
+          id="btn-hamburger"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <!-- 3 garis hamburger, digambar murni dengan span -->
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
 
-      <ul class="nav-menu">
+        <!-- Menu navigasi -->
+        <ul class="nav-menu" id="nav-menu" role="list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link "> Beranda </a>
+          </li>
+          <li class="nav-item">
+            <a href="histori.html" class="nav-link nav-link--active"> Data Historis & Tren </a>
+          </li>
+          <li class="nav-item">
+            <a href="gamifikasi.html" class="nav-link"> Minigame: Tebak Harga Rica!</a>
+          </li>
+          <li class="nav-item nav-item--cta">
+            <a href="login.html" class="btn-masuk"> Masuk/Daftar </a>
+          </li>
+        </ul>
 
-        <li>
-          <a href="index.html">
-            Beranda
-          </a>
-        </li>
-
-        <li>
-          <a href="histori.html" class="active">
-            Histori
-          </a>
-        </li>
-
-        <li>
-          <a href="gamifikasi.html">
-            Game
-          </a>
-        </li>
-
-        <li>
-          <a href="login.html" class="btn-login">
-            Masuk
-          </a>
-        </li>
-
-      </ul>
-
+      </div>
     </nav>
-
   </header>
+  <!-- /NAVBAR -->
+
 
   <!-- =========================================
        HERO
@@ -295,10 +302,9 @@
 
   </footer>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 
-  <!-- JS -->
+  <script src="js/api.js"></script>
   <script src="js/histori.js"></script>
 
 </body>

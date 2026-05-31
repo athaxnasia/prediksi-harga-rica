@@ -1,58 +1,162 @@
+/* =========================================================
+   ELEMENT
+========================================================= */
 
+const btnSubmit  = document.getElementById("btn-submit");
+const tableBody  = document.getElementById("table-body");
+const messageBox = document.getElementById("message-box");
 
-/* ==========================================
-   INPUT HARGA
-========================================== */
+/* =========================================================
+   CEK AUTH — harus penjual atau admin
+   Auth.me() → GET api/auth.php?action=me
+========================================================= */
 
-const btnSubmit =
-document.getElementById("btn-submit");
+(async () => {
+  const user = await Auth.me();
 
-const tableBody =
-document.getElementById("table-body");
-
-const messageBox =
-document.getElementById("message-box");
-
-btnSubmit.addEventListener("click", () => {
-
-  const tanggal =
-  document.getElementById("tanggal-input").value;
-
-  const harga =
-  document.getElementById("harga-input").value;
-
-  if(tanggal === "" || harga === ""){
-
-    alert(
-      "Harap isi semua field"
-    );
-
+  if (!user?.id) {
+    window.location.href = "login.html";
     return;
   }
 
-  const row =
-  document.createElement("tr");
+  if (user.role !== "penjual" && user.role !== "admin") {
+    alert("Akses ditolak.");
+    window.location.href = "index.html";
+  }
+})();
 
-  row.innerHTML = `
+/* =========================================================
+   LOAD DAFTAR PASAR — isi dropdown
+   Pasar.getAll() → GET api/pasar.php
+========================================================= */
 
-    <td>${tanggal}</td>
+async function loadPasar() {
+  const select = document.getElementById("pasar-input");
+  if (!select) return;
 
-    <td>
-      Rp ${Number(harga).toLocaleString("id-ID")}
-    </td>
+  try {
+    const d        = await Pasar.getAll();
+    const pasarList = d?.pasar ?? d ?? [];
 
-    <td class="status-normal">
-      Baru
-    </td>
+    select.innerHTML = `<option value="">-- Pilih Pasar --</option>`;
 
-  `;
+    pasarList.forEach(p => {
+      const opt       = document.createElement("option");
+      opt.value       = p.id;
+      opt.textContent = p.nama_pasar;
+      select.appendChild(opt);
+    });
 
-  tableBody.prepend(row);
+  } catch (err) {
+    console.error("Gagal load pasar:", err);
+  }
+}
 
-  messageBox.textContent =
-  "Harga berhasil disimpan";
+loadPasar();
 
-  document.getElementById("tanggal-input").value = "";
-  document.getElementById("harga-input").value = "";
+/* =========================================================
+   LOAD HISTORI INPUT PENJUAL
+   Histori.getPenjual() → GET api/histori.php?penjual=1
+========================================================= */
 
+async function loadHistoriPenjual() {
+  try {
+    const d    = await Histori.getPenjual();
+    const data = d?.histori ?? d ?? [];
+
+    renderHistoriTable(data);
+
+  } catch (err) {
+    console.error("Gagal load histori penjual:", err);
+  }
+}
+
+function renderHistoriTable(data) {
+  tableBody.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    tableBody.innerHTML =
+      `<tr><td colspan="3" style="text-align:center">Belum ada data</td></tr>`;
+    return;
+  }
+
+  data.forEach(item => {
+    const row = document.createElement("tr");
+
+    const tanggal = new Date(item.tanggal).toLocaleDateString("id-ID", {
+      day: "2-digit", month: "long", year: "numeric"
+    });
+
+    const hargaFmt = Number(item.harga).toLocaleString("id-ID");
+
+    row.innerHTML = `
+      <td>${tanggal}</td>
+      <td>Rp ${hargaFmt}</td>
+      <td class="status-normal">${item.nama_pasar ?? "—"}</td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+}
+
+loadHistoriPenjual();
+
+/* =========================================================
+   INPUT HARGA
+   Harga.input() → POST api/harga.php
+========================================================= */
+
+btnSubmit.addEventListener("click", async () => {
+  const tanggal = document.getElementById("tanggal-input").value;
+  const harga   = document.getElementById("harga-input").value;
+  const pasarEl = document.getElementById("pasar-input");
+  const pasarId = pasarEl ? pasarEl.value : null;
+
+  if (!tanggal || !harga) {
+    alert("Harap isi semua field");
+    return;
+  }
+
+  if (pasarEl && !pasarId) {
+    alert("Pilih pasar terlebih dahulu");
+    return;
+  }
+
+  btnSubmit.disabled    = true;
+  btnSubmit.textContent = "Menyimpan...";
+
+  try {
+    const body = { tanggal, harga: Number(harga) };
+    if (pasarId) body.pasar_id = Number(pasarId);
+
+    await Harga.input(body);
+
+    /* Tambah baris ke tabel secara optimistis */
+    const row        = document.createElement("tr");
+    const tanggalFmt = new Date(tanggal).toLocaleDateString("id-ID", {
+      day: "2-digit", month: "long", year: "numeric"
+    });
+
+    row.innerHTML = `
+      <td>${tanggalFmt}</td>
+      <td>Rp ${Number(harga).toLocaleString("id-ID")}</td>
+      <td class="status-normal">Baru</td>
+    `;
+
+    tableBody.prepend(row);
+
+    messageBox.textContent = "Harga berhasil disimpan ✓";
+    messageBox.style.color = "green";
+
+    document.getElementById("tanggal-input").value = "";
+    document.getElementById("harga-input").value   = "";
+    if (pasarEl) pasarEl.value = "";
+
+  } catch (err) {
+    console.error("Gagal simpan harga:", err);
+    alert(err.message ?? "Gagal menyimpan harga");
+  } finally {
+    btnSubmit.disabled    = false;
+    btnSubmit.textContent = "Simpan Harga";
+  }
 });
