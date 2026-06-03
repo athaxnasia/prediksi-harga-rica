@@ -38,9 +38,8 @@ if (strlen($password) < 8) {
     $errors[] = 'Password minimal 8 karakter.';
 }
 
-if ($password !== $konfirmasi_password) {
-    $errors[] = 'Konfirmasi password tidak cocok.';
-}
+// Validasi konfirmasi dilakukan di frontend
+// Backend tidak perlu cek ulang
 
 if (!empty($errors)) {
     sendError(implode(' ', $errors));

@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     sendSuccess([
-        'penjual' => $users,
+        'users' => $users,
         'total'   => count($users),
         'ringkasan' => [
             'aktif'     => $counts['aktif']    ?? 0,

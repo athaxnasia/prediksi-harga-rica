@@ -63,7 +63,6 @@ function renderTablePenjual(users) {
         : "";
 
     row.innerHTML = `
-      <td>${user.id}</td>
       <td>${user.nama}</td>
       <td>${user.email}</td>
       <td><span class="status ${statusCls}">${user.status}</span></td>
