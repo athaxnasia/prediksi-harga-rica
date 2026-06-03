@@ -1,4 +1,11 @@
 /* =========================================================
+   login.js
+   Requires: api.js (dimuat lebih dulu di HTML)
+   <script src="js/api.js"></script>
+   <script src="js/login.js"></script>
+========================================================= */
+
+/* =========================================================
    ELEMENT
 ========================================================= */
 
@@ -9,6 +16,19 @@ const registerForm = document.getElementById("register-form");
 const messageBox   = document.getElementById("message-box");
 
 /* =========================================================
+   HELPER — arahkan ke halaman sesuai role
+     admin   → admin.html
+     penjual → penjual-dashboard.html
+     lainnya → index.html (warga / tamu)
+========================================================= */
+
+function redirectByRole(role) {
+  if (role === "admin")   { window.location.href = "admin.html";             return; }
+  if (role === "penjual") { window.location.href = "penjual-dashboard.html"; return; }
+  window.location.href = "index.html";
+}
+
+/* =========================================================
    CEK SUDAH LOGIN — redirect jika sudah
    Auth.me() → GET api/auth.php?action=me
 ========================================================= */
@@ -16,8 +36,7 @@ const messageBox   = document.getElementById("message-box");
 (async () => {
   const user = await Auth.me();
   if (user?.logged_in || user?.id) {
-    window.location.href =
-      user.role === "admin" ? "admin.html" : "index.html";
+    redirectByRole(user.role);
   }
 })();
 
@@ -64,10 +83,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     showMessage("Login berhasil! Mengalihkan...", "green");
 
-    setTimeout(() => {
-      window.location.href =
-        data.role === "admin" ? "admin.html" : "index.html";
-    }, 800);
+    setTimeout(() => redirectByRole(data.role), 800);
 
   } catch (err) {
     showMessage(err.message ?? "Login gagal", "red");

@@ -1,3 +1,4 @@
+
 /* =========================================================
    CEK AUTH — harus admin
    Auth.me() → GET api/auth.php?action=me
@@ -7,11 +8,19 @@
   const user = await Auth.me();
 
   if (!user?.id) {
+    /* Belum login → ke halaman login */
     window.location.href = "login.html";
     return;
   }
 
+  if (user.role === "penjual") {
+    /* Penjual salah halaman → arahkan ke dashboard penjual */
+    window.location.href = "penjual-dashboard.html";
+    return;
+  }
+
   if (user.role !== "admin") {
+    /* Warga atau role tidak dikenal → ke index */
     alert("Akses ditolak. Halaman ini hanya untuk admin.");
     window.location.href = "index.html";
     return;

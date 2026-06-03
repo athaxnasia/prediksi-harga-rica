@@ -1,3 +1,4 @@
+
 /* =========================================================
    ELEMENT
 ========================================================= */
@@ -7,7 +8,7 @@ const tableBody  = document.getElementById("table-body");
 const messageBox = document.getElementById("message-box");
 
 /* =========================================================
-   CEK AUTH — harus penjual atau admin
+   CEK AUTH — hanya penjual yang boleh akses
    Auth.me() → GET api/auth.php?action=me
 ========================================================= */
 
@@ -15,12 +16,20 @@ const messageBox = document.getElementById("message-box");
   const user = await Auth.me();
 
   if (!user?.id) {
+    /* Belum login → ke halaman login */
     window.location.href = "login.html";
     return;
   }
 
-  if (user.role !== "penjual" && user.role !== "admin") {
-    alert("Akses ditolak.");
+  if (user.role === "admin") {
+    /* Admin salah halaman → arahkan ke admin.html */
+    window.location.href = "admin.html";
+    return;
+  }
+
+  if (user.role !== "penjual") {
+    /* Warga atau role tidak dikenal → ke index */
+    alert("Akses ditolak. Halaman ini hanya untuk penjual.");
     window.location.href = "index.html";
   }
 })();
