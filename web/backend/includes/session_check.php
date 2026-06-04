@@ -50,5 +50,6 @@ function currentUser(): array {
         'id'    => $_SESSION['user_id']   ?? null,
         'nama'  => $_SESSION['user_nama'] ?? null,
         'role'  => $_SESSION['user_role'] ?? null,
+          'email' => $_SESSION['user_email'] ?? null,
     ];
 }

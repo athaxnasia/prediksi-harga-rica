@@ -2,10 +2,6 @@
 // ============================================================
 // api/auth.php — Login & Logout
 // ============================================================
-// POST api/auth.php?action=login   → login user
-// POST api/auth.php?action=logout  → logout user
-// GET  api/auth.php?action=me      → cek status login saat ini
-// ============================================================
 
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../includes/response.php';
@@ -23,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'me') {
             'id'        => $_SESSION['user_id'],
             'nama'      => $_SESSION['user_nama'],
             'role'      => $_SESSION['user_role'],
+             'email'     => $_SESSION['user_email'] ?? '',
         ]);
     }
     sendSuccess(['logged_in' => false]);
@@ -30,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'me') {
 
 // ── POST: login ─────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'login') {
-    $email    = sanitize($_POST['email']    ?? '');
-    $password = $_POST['password'] ?? '';   // tidak di-sanitize, langsung ke password_verify
+    $input    = getInput();
+    $email    = sanitize($input['email']    ?? '');
+    $password = $input['password'] ?? '';
 
     if ($email === '' || $password === '') {
         sendError('Email dan password wajib diisi.');
@@ -44,29 +42,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'login') {
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    // Pesan error sengaja dibuat generik agar tidak bocorkan info akun
     if (!$user || !password_verify($password, $user['password'])) {
         sendError('Email atau password salah.', 401);
     }
 
     if ($user['status'] === 'pending') {
-        sendError('Akun kamu belum disetujui oleh admin. Silakan tunggu konfirmasi.', 403);
+        sendError('Akun kamu belum disetujui oleh admin.', 403);
     }
 
     if ($user['status'] === 'nonaktif') {
-        sendError('Akun kamu telah dinonaktifkan. Hubungi admin untuk informasi lebih lanjut.', 403);
+        sendError('Akun kamu telah dinonaktifkan.', 403);
     }
 
-    // Set session
-    session_regenerate_id(true);    // cegah session fixation
+    session_regenerate_id(true);
     $_SESSION['user_id']   = $user['id'];
     $_SESSION['user_nama'] = $user['nama'];
     $_SESSION['user_role'] = $user['role'];
+    $_SESSION['user_email'] = $user['email'];
 
     sendSuccess([
         'id'   => $user['id'],
         'nama' => $user['nama'],
         'role' => $user['role'],
+        'email' => $user['email'],
     ]);
 }
 
@@ -77,5 +75,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'logout') {
     sendSuccess(['message' => 'Berhasil logout.']);
 }
 
-// Jika action tidak dikenali
 sendError('Endpoint tidak ditemukan.', 404);
