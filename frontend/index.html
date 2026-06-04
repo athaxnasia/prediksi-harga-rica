@@ -41,6 +41,9 @@
           <li class="nav-item">
             <a href="gamifikasi.html" class="nav-link">Minigame: Tebak Harga Rica!</a>
           </li>
+          <li class="nav-item">
+            <a href="tentang.html" class="nav-link">Tentang Kami</a>
+          </li>
           <li class="nav-item nav-item--cta">
             <a href="login.html" class="btn-masuk">Masuk/Daftar</a>
           </li>
@@ -189,53 +192,7 @@
   </section>
 
 
-  <!-- ============================================================
-       GRAFIK TREN HARGA 30 HARI
-       Dirender oleh index.js dari Histori.get(30)
-  ============================================================ -->
-  <section id="grafik-tren" class="section">
-    <div class="section-container">
-
-      <div class="grafik-header">
-        <div>
-          <h2 class="grafik-judul">Tren Harga Rica</h2>
-          <p class="grafik-sub">7 Hari Terakhir · Pasar Manado</p>
-        </div>
-      </div>
-
-      <!-- Loading state -->
-      <div class="state-loading" id="loading-grafik">
-        <span class="spinner"></span>
-        <span>Memuat grafik...</span>
-      </div>
-
-      <!-- Bar chart — diisi index.js -->
-      <div class="chart-container" id="chart-container" hidden>
-        <div class="chart-bars" id="chart-bars-index"></div>
-      </div>
-
-      <!-- Stat ringkasan bawah grafik -->
-      <div class="grafik-stats" id="grafik-stats" hidden>
-        <div class="grafik-stat">
-          <span class="grafik-stat-label">Tertinggi</span>
-          <span class="grafik-stat-nilai" id="stat-tertinggi">—</span>
-        </div>
-        <div class="grafik-stat">
-          <span class="grafik-stat-label">Terendah</span>
-          <span class="grafik-stat-nilai" id="stat-terendah">—</span>
-        </div>
-        <div class="grafik-stat">
-          <span class="grafik-stat-label">Rata-rata</span>
-          <span class="grafik-stat-nilai" id="stat-rata">—</span>
-        </div>
-        <div class="grafik-stat">
-          <span class="grafik-stat-label">Tren</span>
-          <span class="grafik-stat-nilai" id="stat-tren">—</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
+ 
 
 
   <!-- CTA GAMIFIKASI -->
@@ -261,7 +218,7 @@
 
         <div class="footer-col footer-col--brand">
           <p class="footer-matakuliah">
-            Proyek Mata Kuliah Topik Khusus Teknik Informatika UNSRAT
+            Proyek Mahasiswa Teknik Informatika UNSRAT
           </p>
         </div>
 
@@ -271,6 +228,7 @@
             <li><a href="index.html">Beranda</a></li>
             <li><a href="histori.html">Histori Harga</a></li>
             <li><a href="gamifikasi.html">Tebak Harga</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
             <li><a href="login.html">Masuk</a></li>
           </ul>
         </div>
@@ -289,7 +247,7 @@
 
       <div class="footer-bottom">
         <p class="footer-copy">
-          &copy; <span id="footer-year"></span> RicaWatch Manado.
+          &copy; <span id="footer-year"></span> RicaHolic Manado.
           Dibuat untuk keperluan akademik.
         </p>
       </div>

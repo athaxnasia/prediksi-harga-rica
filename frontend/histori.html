@@ -49,6 +49,9 @@
           <li class="nav-item">
             <a href="gamifikasi.html" class="nav-link"> Minigame: Tebak Harga Rica!</a>
           </li>
+          <li class="nav-item">
+            <a href="tentang.html" class="nav-link">Tentang Kami</a>
+          </li>
           <li class="nav-item nav-item--cta">
             <a href="login.html" class="btn-masuk"> Masuk/Daftar </a>
           </li>
@@ -95,13 +98,18 @@
           <label>Pilih Bulan</label>
 
           <select id="filter-bulan">
-
-            <option>Januari</option>
-            <option>Februari</option>
-            <option>Maret</option>
-            <option>April</option>
-            <option>Mei</option>
-
+            <option value="1">Januari</option>
+            <option value="2">Februari</option>
+            <option value="3">Maret</option>
+            <option value="4">April</option>
+            <option value="5">Mei</option>
+            <option value="6">Juni</option>
+            <option value="7">Juli</option>
+            <option value="8">Agustus</option>
+            <option value="9">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
           </select>
 
         </div>
@@ -135,9 +143,7 @@
 
           <h3>Harga Tertinggi</h3>
 
-          <p id="harga-tertinggi">
-            Rp 75.000
-          </p>
+          <p id="harga-tertinggi">—</p>
 
         </div>
 
@@ -148,9 +154,7 @@
 
           <h3>Harga Terendah</h3>
 
-          <p id="harga-terendah">
-            Rp 45.000
-          </p>
+          <p id="harga-terendah">—</p>
 
         </div>
 
@@ -161,9 +165,7 @@
 
           <h3>Rata-rata</h3>
 
-          <p id="harga-rata">
-            Rp 58.000
-          </p>
+          <p id="harga-rata">—</p>
 
         </div>
 
@@ -173,76 +175,6 @@
 
   </section>
 
-  <!-- =========================================
-       TREND CHART
-  ========================================== -->
-  <section class="chart-section">
-
-    <div class="container">
-
-      <div class="chart-box">
-
-        <div class="chart-header">
-
-          <h2>
-            Grafik Tren Harga Rica
-          </h2>
-
-        </div>
-
-        <!-- CHART -->
-        <div class="chart-area">
-
-<div class="chart-container">
-
-  <div class="chart-bars">
-
-    <div class="bar-group">
-      <div class="bar" style="height:110px;"></div>
-      <span>10 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:130px;"></div>
-      <span>11 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:125px;"></div>
-      <span>12 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:150px;"></div>
-      <span>13 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:170px;"></div>
-      <span>14 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:190px;"></div>
-      <span>15 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:210px;"></div>
-      <span>16 Mei</span>
-    </div>
-
-  </div>
-
-</div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
 
   <!-- =========================================
        TABLE DATA
@@ -291,16 +223,130 @@
 
   </section>
 
-  <!-- =========================================
-       FOOTER
-  ========================================== -->
-  <footer>
+   <!-- ============================================================
+       GRAFIK TREN HARGA RICAAA
+  ============================================================ -->
+  <section id="grafik-tren" class="chart-section">
+    <div class="container">
+      <div class="chart-box">
 
-    <p>
-      © 2026 RicaHolic Manado
-    </p>
+        <div class="grafik-header">
+          <div>
+            <h2 class="grafik-judul">Tren Harga Rica</h2>
+            <p class="grafik-sub">7 Hari Terakhir · Pasar Manado</p>
+          </div>
+        </div>
+
+        <!-- Loading state -->
+        <div class="state-loading" id="loading-grafik">
+          <span class="spinner"></span>
+          <span>Memuat grafik...</span>
+        </div>
+
+        <!-- Bar chart — diisi histori.js -->
+        <div class="chart-container" id="chart-container" hidden>
+          <div class="chart-bars" id="chart-bars-index"></div>
+        </div>
+
+        <!-- Stat ringkasan bawah grafik -->
+        <div class="grafik-stats" id="grafik-stats" hidden>
+          <div class="grafik-stat">
+            <span class="grafik-stat-label">Tertinggi</span>
+            <span class="grafik-stat-nilai" id="stat-tertinggi">—</span>
+          </div>
+          <div class="grafik-stat">
+            <span class="grafik-stat-label">Terendah</span>
+            <span class="grafik-stat-nilai" id="stat-terendah">—</span>
+          </div>
+          <div class="grafik-stat">
+            <span class="grafik-stat-label">Rata-rata</span>
+            <span class="grafik-stat-nilai" id="stat-rata">—</span>
+          </div>
+          <div class="grafik-stat">
+            <span class="grafik-stat-label">Tren</span>
+            <span class="grafik-stat-nilai" id="stat-tren">—</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- ============================================================
+       FOOTER
+  ============================================================ -->
+
+  <footer id="site-footer">
+
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <div class="footer-col footer-col--brand">
+
+          <p class="footer-matakuliah">
+            Proyek Mahasiswa Teknik Informatika UNSRAT
+          </p>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4 class="footer-heading">
+            Navigasi
+          </h4>
+
+          <ul class="footer-links">
+
+            <li><a href="index.html">Beranda</a></li>
+            <li><ref="histori.html">Histori Harga</a></li>
+            <li><a href="gamifikasi.html">Tebak Harga</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="login.html">Masuk</a></li>
+
+          </ul>
+
+        </div>
+
+        <div class="footer-col">
+
+          <h4 class="footer-heading">
+            Teknologi
+          </h4>
+
+          <ul class="footer-links">
+
+            <li>✅ Random Forest ML</li>
+            <li>✅ MAPE 6,62%</li>
+            <li>✅ PHP + MySQL</li>
+            <li>✅ JavaScript ES6+</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <p class="footer-copy">
+
+          &copy;
+          <span id="footer-year"></span>
+
+          RicaHolic Manado.
+          Dibuat untuk keperluan akademik.
+
+        </p>
+
+      </div>
+
+    </div>
 
   </footer>
+
 
   
 
