@@ -17,7 +17,7 @@ const messageBox   = document.getElementById("message-box");
   const user = await Auth.me();
   if (user?.logged_in || user?.id) {
     window.location.href =
-      user.role === "admin" ? "admin.html" : "index.html";
+      user.role === "admin" ? "admin.html" : "penjual-dashboard.html";
   }
 })();
 
@@ -66,7 +66,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     setTimeout(() => {
       window.location.href =
-        data.role === "admin" ? "admin.html" : "index.html";
+        data.role === "admin" ? "admin.html" : "penjual-dashboard.html";
     }, 800);
 
   } catch (err) {
