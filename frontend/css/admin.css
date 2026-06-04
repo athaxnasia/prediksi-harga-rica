@@ -391,3 +391,23 @@ tbody tr{
   color: #fff;
   border-color: #c0392b;
 }
+
+/* =========================================
+   SELECT / DROPDOWN
+========================================= */
+ 
+.input-group select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Segoe UI", sans-serif;
+  background: #fff;
+  cursor: pointer;
+}
+ 
+.input-group select:focus {
+  outline: none;
+  border-color: #f4c542;
+}

@@ -569,3 +569,124 @@ body{
     padding:22px;
   }
 }
+
+/* ── Section wrapper ── */
+#grafik-tren {
+  background: #fff;
+}
+ 
+/* ── Header grafik ── */
+.grafik-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+ 
+.grafik-judul {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 4px;
+}
+ 
+.grafik-sub {
+  color: #888;
+  font-size: 0.9rem;
+}
+ 
+/* ── Chart container ── */
+.chart-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+ 
+.chart-bars {
+  min-width: 500px;
+  height: 260px;
+ 
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+ 
+  border-left: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+ 
+  padding: 20px 10px 0;
+}
+ 
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 24px;
+}
+ 
+.bar {
+  width: 100%;
+  max-width: 40px;
+  background: linear-gradient(to top, #f4c542, #ffdf7e);
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.2s, opacity 0.2s;
+  cursor: pointer;
+}
+ 
+.bar:hover {
+  transform: translateY(-4px);
+  opacity: 0.85;
+}
+ 
+.bar-group span {
+  font-size: 0.72rem;
+  color: #888;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+ 
+/* ── Stat ringkasan ── */
+.grafik-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+ 
+.grafik-stat {
+  background: #f9f7f3;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.grafik-stat-label {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+ 
+.grafik-stat-nilai {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+}
+ 
+/* ── Loading state ── */
+.state-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aaa;
+  padding: 30px 0;
+}
