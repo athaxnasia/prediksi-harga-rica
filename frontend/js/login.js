@@ -107,7 +107,7 @@ function setLoadingLogin(loading) {
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const nama     = document.getElementById("register-nama")?.value.trim() ?? "";
+  const nama     = document.getElementById("register-name")?.value.trim() ?? "";
   const email    = document.getElementById("register-email").value.trim();
   const password = document.getElementById("register-password").value;
   const confirm  = document.getElementById("register-confirm").value;

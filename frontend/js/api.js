@@ -1,6 +1,6 @@
 
 
-const API_BASE = "../web/backend/api";
+const API_BASE = "../backend/api";
 
 
 
