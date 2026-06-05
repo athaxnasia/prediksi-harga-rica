@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Admin Dashboard - RicaHolic</title>
-
   <link rel="stylesheet" href="css/admin.css">
-
- 
 </head>
 <body>
 
   <!-- SIDEBAR -->
-
   <aside class="sidebar">
 
     <div>
@@ -23,279 +18,155 @@
       </div>
 
       <ul class="menu">
-
-        <li>
-          <a href="#" class="active">
-            Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a href="#akun">
-            Akun Penjual
-          </a>
-        </li>
-
-        <li>
-          <a href="#manual">
-            Input Harga
-          </a>
-        </li>
-
-        <li>
-          <a href="#ml">
-            Prediksi ML
-          </a>
-        </li>
-
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#akun">Akun Penjual</a></li>
+        <li><a href="#manual">Input Harga</a></li>
+        <li><a href="#ml">Prediksi ML</a></li>
       </ul>
 
     </div>
 
+    <!-- Nama admin + tombol logout diisi JS -->
     <div class="sidebar-footer">
-      Admin Superuser
+      <span id="sidebar-nama">Admin</span>
+      <button id="btn-logout" class="btn-logout">🚪 Logout</button>
     </div>
 
   </aside>
 
   <!-- MAIN -->
-
   <main class="main">
 
     <!-- TOPBAR -->
-
     <div class="topbar">
 
       <div>
         <h1>Dashboard Admin</h1>
-        <p>
-          Kontrol sistem prediksi harga rica Kota Manado
-        </p>
+        <p>Kontrol sistem prediksi harga rica Kota Manado</p>
       </div>
 
+      <!-- Nama & email diisi oleh admin.js dari Auth.me() -->
       <div class="admin-profile">
-
         <div>
-          <strong>
-            Admin RicaHolic
-          </strong>
-
-          <p>
-            admin@gmail.com
-          </p>
+          <strong id="admin-nama">—</strong>
+          <p id="admin-email">—</p>
         </div>
-
-        <div class="avatar">
-          A
-        </div>
-
+        <div class="avatar" id="admin-avatar">A</div>
       </div>
 
     </div>
 
     <!-- SUMMARY -->
-
     <section class="summary-grid">
 
       <div class="summary-card">
         <span>👨‍🌾</span>
         <h3>Total Penjual</h3>
-        <p id="total-penjual">24</p>
+        <p id="total-penjual">—</p>
       </div>
 
       <div class="summary-card">
         <span>📈</span>
         <h3>Prediksi Hari Ini</h3>
-        <p>Rp 58.000</p>
+        <p id="prediksi-hari-ini">—</p>
       </div>
 
       <div class="summary-card">
         <span>🤖</span>
         <h3>Status ML</h3>
-        <p>Aktif</p>
+        <p id="status-ml">Aktif</p>
       </div>
 
     </section>
 
     <!-- AKUN PENJUAL -->
-
     <section class="card-section" id="akun">
 
       <div class="section-header">
-
-        <h2>
-          Manajemen Akun Penjual
-        </h2>
-
+        <h2>Manajemen Akun Penjual</h2>
       </div>
 
       <div class="table-wrapper">
-
         <table>
-
           <thead>
-
             <tr>
               <th>Nama</th>
               <th>Email</th>
               <th>Status</th>
               <th>Aksi</th>
             </tr>
-
           </thead>
-
-          <tbody id="seller-table">
-
+          <!-- Diisi oleh admin.js dari Users.getAll() -->
+          <tbody id="seller-table-body">
             <tr>
-
-              <td>Andi</td>
-              <td>andi@gmail.com</td>
-              <td>
-                <span class="status pending">
-                  Pending
-                </span>
+              <td colspan="4" style="text-align:center;color:#aaa">
+                Memuat data penjual...
               </td>
-
-              <td>
-
-                <button class="btn approve">
-                  Approve
-                </button>
-
-                <button class="btn delete">
-                  Hapus
-                </button>
-
-              </td>
-
             </tr>
-
-            <tr>
-
-              <td>Budi</td>
-              <td>budi@gmail.com</td>
-
-              <td>
-                <span class="status approved">
-                  Approved
-                </span>
-              </td>
-
-              <td>
-
-                <button class="btn delete">
-                  Hapus
-                </button>
-
-              </td>
-
-            </tr>
-
           </tbody>
-
         </table>
-
       </div>
 
     </section>
 
-    <!-- INPUT MANUAL -->
-
+    <!-- INPUT HARGA MANUAL -->
     <section class="card-section" id="manual">
 
-      <h2>
-        Input Harga Manual
-      </h2>
+      <h2>Input Harga Manual</h2>
 
       <div class="input-grid">
 
         <div class="input-group">
-          <label>Tanggal</label>
+          <label for="tanggal">Tanggal</label>
           <input type="date" id="tanggal">
         </div>
 
+        <!-- Dropdown pasar — diisi oleh admin.js dari Pasar.getAll() -->
         <div class="input-group">
-          <label>Harga Rica (Rp/kg)</label>
+          <label for="pasar">Pasar</label>
+          <select id="pasar">
+            <option value="">-- Memuat pasar... --</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="harga">Harga Rica (Rp/kg)</label>
           <input type="number" id="harga" placeholder="Contoh: 58000">
         </div>
 
       </div>
 
-      <button class="main-btn" id="btn-simpan">
-        Simpan Harga
-      </button>
+      <button class="main-btn" id="btn-simpan">Simpan Harga</button>
 
       <div id="manual-message"></div>
 
     </section>
 
     <!-- CHART -->
-
     <section class="card-section">
 
-      <h2>
-        Grafik Prediksi Harga
-      </h2>
+      <h2>Grafik Prediksi Harga</h2>
 
       <div class="chart-container">
-
-  <div class="chart-bars">
-
-    <div class="bar-group">
-      <div class="bar" style="height:120px;"></div>
-      <span>10 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:140px;"></div>
-      <span>11 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:150px;"></div>
-      <span>12 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:170px;"></div>
-      <span>13 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:190px;"></div>
-      <span>14 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:210px;"></div>
-      <span>15 Mei</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:230px;"></div>
-      <span>16 Mei</span>
-    </div>
-
-  </div>
-
-</div>
+        <div class="chart-bars" id="chart-bars">
+          <!-- Diisi oleh admin.js dari Prediksi.getMingguan() -->
+          <div style="width:100%;text-align:center;color:#aaa;padding:40px 0">
+            Memuat grafik...
+          </div>
+        </div>
+      </div>
 
     </section>
 
     <!-- ML SECTION -->
-
     <section class="ml-section" id="ml">
 
       <div>
-
-        <h2>
-          Trigger Update Prediksi ML
-        </h2>
-
+        <h2>Trigger Update Prediksi ML</h2>
         <p>
-          Jalankan ulang model machine learning untuk memperbarui prediksi harga terbaru.
+          Jalankan ulang model machine learning untuk
+          memperbarui prediksi harga terbaru.
         </p>
-
       </div>
 
       <button class="ml-btn" id="btn-ml">
@@ -305,6 +176,7 @@
     </section>
 
   </main>
+
   <script src="js/api.js"></script>
   <script src="js/admin.js"></script>
 

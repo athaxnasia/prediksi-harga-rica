@@ -42,10 +42,10 @@ async function loadHarga() {
   try {
     const d = await Harga.getTerkini();
 
-    document.getElementById("loading-harga").hidden        = true;
-    document.getElementById("nilai-harga").hidden          = false;
-    document.getElementById("meta-harga").hidden           = false;
-    document.getElementById("badge-status-harga").hidden   = false;
+    document.getElementById("loading-harga").hidden       = true;
+    document.getElementById("nilai-harga").hidden         = false;
+    document.getElementById("meta-harga").hidden          = false;
+    document.getElementById("badge-status-harga").hidden  = false;
 
     document.getElementById("harga-hari-ini").textContent =
       Number(d.harga_hari_ini ?? d.harga).toLocaleString("id-ID");
@@ -74,9 +74,9 @@ async function loadHarga() {
 
   } catch (err) {
     console.error("Gagal load harga:", err);
-    document.getElementById("loading-harga").hidden = true;
-    document.getElementById("nilai-harga").hidden   = false;
-    document.getElementById("nilai-harga").textContent = "Data tidak tersedia";
+    document.getElementById("loading-harga").hidden   = true;
+    document.getElementById("nilai-harga").hidden     = false;
+    document.getElementById("harga-hari-ini").textContent = "—";
   }
 }
 
@@ -89,9 +89,9 @@ loadHarga();
 ========================================================= */
 
 async function loadPrediksi(range) {
-  document.getElementById("loading-prediksi").hidden       = false;
-  document.getElementById("nilai-prediksi").hidden         = true;
-  document.getElementById("badge-status-prediksi").hidden  = true;
+  document.getElementById("loading-prediksi").hidden      = false;
+  document.getElementById("nilai-prediksi").hidden        = true;
+  document.getElementById("badge-status-prediksi").hidden = true;
 
   try {
     const d =
@@ -99,16 +99,16 @@ async function loadPrediksi(range) {
         ? await Prediksi.getBesok()
         : await Prediksi.getMingguan();
 
-    document.getElementById("loading-prediksi").hidden      = true;
+    document.getElementById("loading-prediksi").hidden      = false;
     document.getElementById("nilai-prediksi").hidden        = false;
     document.getElementById("badge-status-prediksi").hidden = false;
+    document.getElementById("loading-prediksi").hidden      = true;
 
     const low   = document.getElementById("prediksi-low");
     const high  = document.getElementById("prediksi-high");
     const badge = document.getElementById("badge-status-prediksi");
 
     if (range === "besok") {
-      /* getBesok() → { prediksi, tanggal, low, high, status_label, status_badge } */
       const bawah = d.harga_bawah ?? d.low  ?? d.harga_prediksi * 0.95;
       const atas  = d.harga_atas  ?? d.high ?? d.harga_prediksi * 1.05;
 
@@ -116,58 +116,48 @@ async function loadPrediksi(range) {
       high.textContent = Math.round(atas).toLocaleString("id-ID");
 
       badge.textContent = d.status_label ?? "Naik Sedikit";
-      badge.className   =
-        `badge-status ${d.status_badge ?? "badge--tinggi"}`;
+      badge.className   = `badge-status ${d.status_badge ?? "badge--tinggi"}`;
 
     } else {
-      /* getMingguan() → { low, high, status_label, status_badge, detail[] } */
-      const minggu  = d.prediksi_minggu ?? d.detail ?? [];
+      const minggu   = d.prediksi_minggu ?? d.detail ?? [];
       const hargaArr = minggu.map(m => m.harga_prediksi);
-      const minH    = d.low  ?? Math.min(...hargaArr);
-      const maxH    = d.high ?? Math.max(...hargaArr);
+      const minH     = d.low  ?? Math.min(...hargaArr);
+      const maxH     = d.high ?? Math.max(...hargaArr);
 
       low.textContent  = Math.round(minH).toLocaleString("id-ID");
       high.textContent = Math.round(maxH).toLocaleString("id-ID");
 
       badge.textContent = d.status_label ?? "Fluktuatif";
-      badge.className   =
-        `badge-status ${d.status_badge ?? "badge--normal"}`;
+      badge.className   = `badge-status ${d.status_badge ?? "badge--normal"}`;
     }
 
   } catch (err) {
     console.error("Gagal load prediksi:", err);
     document.getElementById("loading-prediksi").hidden = true;
     document.getElementById("nilai-prediksi").hidden   = false;
-    document.getElementById("nilai-prediksi").textContent =
-      "Prediksi tidak tersedia";
+    document.getElementById("prediksi-low").textContent  = "—";
+    document.getElementById("prediksi-high").textContent = "—";
   }
 }
 
 loadPrediksi("besok");
 
-/* =========================================================
-   TOGGLE BUTTON PREDIKSI
-========================================================= */
-
-const btnBesok  = document.getElementById("btn-prediksi-besok");
-const btnMinggu = document.getElementById("btn-prediksi-minggu");
-
-btnBesok.addEventListener("click", () => {
-  btnBesok.classList.add("btn-toggle--active");
-  btnMinggu.classList.remove("btn-toggle--active");
+/* Toggle prediksi */
+document.getElementById("btn-prediksi-besok").addEventListener("click", () => {
+  document.getElementById("btn-prediksi-besok").classList.add("btn-toggle--active");
+  document.getElementById("btn-prediksi-minggu").classList.remove("btn-toggle--active");
   loadPrediksi("besok");
 });
 
-btnMinggu.addEventListener("click", () => {
-  btnMinggu.classList.add("btn-toggle--active");
-  btnBesok.classList.remove("btn-toggle--active");
+document.getElementById("btn-prediksi-minggu").addEventListener("click", () => {
+  document.getElementById("btn-prediksi-minggu").classList.add("btn-toggle--active");
+  document.getElementById("btn-prediksi-besok").classList.remove("btn-toggle--active");
   loadPrediksi("minggu");
 });
 
 /* =========================================================
    LOAD CUACA
    Open-Meteo API — tidak butuh API key
-   Koordinat: Manado
 ========================================================= */
 
 async function loadCuaca() {
@@ -187,10 +177,8 @@ async function loadCuaca() {
 
     document.getElementById("cuaca-suhu").textContent =
       Math.round(c.temperature_2m);
-
     document.getElementById("cuaca-kelembapan").textContent =
       c.relative_humidity_2m;
-
     document.getElementById("cuaca-hujan").textContent =
       c.precipitation.toFixed(1);
 
@@ -198,7 +186,6 @@ async function loadCuaca() {
     console.error("Gagal load cuaca:", err);
     document.getElementById("loading-cuaca").hidden = true;
     document.getElementById("cuaca-grid").hidden    = false;
-
     document.getElementById("cuaca-suhu").textContent       = "--";
     document.getElementById("cuaca-kelembapan").textContent = "--";
     document.getElementById("cuaca-hujan").textContent      = "--";

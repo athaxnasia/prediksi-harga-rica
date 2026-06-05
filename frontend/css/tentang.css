@@ -1,0 +1,274 @@
+/* =====================================================
+   tentang.css — Halaman Tentang Kami
+   RicaHolic Manado
+===================================================== */
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.tentang-hero {
+  background:
+    linear-gradient(to right,
+    rgba(0,0,0,0.88),
+    rgba(60,50,0,0.88)),
+    url(../gambar/bg.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0 80px;
+  text-align: center;
+}
+
+.tentang-hero-inner {
+  width: 90%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.tentang-label {
+  display: inline-block;
+  background: rgba(244,197,66,0.15);
+  color: #f4c542;
+  border: 1px solid rgba(244,197,66,0.35);
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.tentang-judul {
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.tentang-highlight {
+  color: #f4c542;
+}
+
+.tentang-desc {
+  color: #ccc;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* =====================================================
+   ANGGOTA
+===================================================== */
+
+.tentang-anggota {
+  background: #f5f3ef;
+}
+
+.anggota-intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.anggota-judul {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.anggota-sub {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.anggota-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+/* ── Kartu anggota ── */
+.anggota-kartu {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 28px 30px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+  border: 1px solid #ececec;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.anggota-kartu:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.13);
+}
+
+/* ── Foto ── */
+.anggota-foto-wrapper {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #f4c542;
+  box-shadow: 0 6px 20px rgba(244,197,66,0.3);
+}
+
+.anggota-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder inisial jika foto belum ada */
+.anggota-foto-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #11120d, #3d3000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f4c542;
+  letter-spacing: 2px;
+}
+
+/* ── Info teks ── */
+.anggota-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.anggota-nama {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.anggota-nim {
+  font-size: 0.88rem;
+  color: #f4c542;
+  font-weight: 700;
+  background: #fffbe6;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin: 0 auto;
+}
+
+.anggota-prodi {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* =====================================================
+   TENTANG PROYEK
+===================================================== */
+
+.tentang-proyek {
+  background: #fff;
+}
+
+.proyek-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.proyek-judul {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.proyek-teks p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.proyek-teks strong {
+  color: #111;
+}
+
+/* ── Stack list ── */
+.stack-judul {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.stack-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stack-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #f9f7f3;
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.stack-ikon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.stack-list li strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #111;
+  margin-bottom: 3px;
+}
+
+.stack-list li p {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .tentang-judul {
+    font-size: 2.5rem;
+  }
+
+  .proyek-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .tentang-judul {
+    font-size: 2rem;
+  }
+
+  .anggota-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

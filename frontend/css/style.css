@@ -569,3 +569,13 @@ body{
     padding:22px;
   }
 }
+
+ 
+/* ── Loading state ── */
+.state-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aaa;
+  padding: 30px 0;
+}

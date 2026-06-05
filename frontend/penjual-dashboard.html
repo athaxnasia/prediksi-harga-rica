@@ -10,8 +10,6 @@
 
   <link rel="stylesheet" href="css/penjual.css">
 
-  <!-- CHART.JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -54,7 +52,8 @@
     </div>
 
     <div class="sidebar-bottom">
-      Dashboard Penjual RicaHolic
+      <span id="sidebar-nama-penjual">Penjual</span>
+      <button id="btn-logout" class="btn-logout">🚪 Logout</button>
     </div>
 
   </aside>
@@ -73,12 +72,8 @@
       <div class="seller-info">
 
         <div>
-          <strong>
-            Penjual Rica
-          </strong>
-          <p>
-            penjual@gmail.com
-          </p>
+          <strong id="penjual-nama">—</strong>
+          <p id="penjual-email">—</p>
         </div>
 
         <div class="seller-avatar">
@@ -110,9 +105,7 @@
       <div class="summary-card">
         <span>🔥</span>
         <h3>Tren Minggu Ini</h3>
-        <p>
-          Naik
-        </p>
+        <p id="tren-minggu">—</p>
       </div>
 
     </div>
@@ -161,8 +154,8 @@
         harga rica wajar hari ini berada di sekitar:
       </p>
 
-      <div class="harga-rekomendasi">
-        Rp 57.000 - Rp 60.000
+      <div class="harga-rekomendasi" id="harga-rekomendasi">
+        Memuat...
       </div>
 
       <small>
@@ -178,48 +171,13 @@
         Grafik Tren Harga Penjualan
       </h2>
 
-<div class="chart-container">
-
-  <div class="chart-bars">
-
-    <div class="bar-group">
-      <div class="bar" style="height:100px;"></div>
-      <span>Sen</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:140px;"></div>
-      <span>Sel</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:160px;"></div>
-      <span>Rab</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:180px;"></div>
-      <span>Kam</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:170px;"></div>
-      <span>Jum</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:210px;"></div>
-      <span>Sab</span>
-    </div>
-
-    <div class="bar-group">
-      <div class="bar" style="height:230px;"></div>
-      <span>Min</span>
-    </div>
-
-  </div>
-
-</div>
+      <div class="chart-container">
+        <div class="chart-bars" id="chart-bars">
+          <div style="width:100%;text-align:center;color:#aaa;padding:40px 0">
+            Memuat grafik...
+          </div>
+        </div>
+      </div>
 
     </section>
 
@@ -272,8 +230,7 @@
   </main>
 
   <script src="js/api.js"></script>
-<script src="js/penjual.js"></script>
+  <script src="js/penjual.js"></script>
 
 </body>
 </html>
-

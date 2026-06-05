@@ -409,3 +409,38 @@ tbody tr{
   color:#555;
   font-weight:600;
 }
+/* =========================================
+   LOGOUT BUTTON & SIDEBAR BOTTOM
+========================================= */
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#sidebar-nama-penjual {
+  color: #aaa;
+  font-size: 0.82rem;
+}
+
+.btn-logout {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  color: #fff;
+  border-color: #c0392b;
+}

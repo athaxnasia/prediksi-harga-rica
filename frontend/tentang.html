@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami — RicaHolic</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tentang.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR (sama dengan index.html) -->
+  <header id="site-header">
+    <nav id="main-nav">
+      <div class="nav-container">
+
+        <a href="index.html" class="nav-brand">
+          <span class="brand-icon">🌶️</span>
+          <span class="brand-name">RicaHolic</span>
+          <span class="brand-sub">Manado</span>
+        </a>
+
+        <button
+          class="nav-hamburger"
+          id="btn-hamburger"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu" role="list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a href="histori.html" class="nav-link">Data Historis & Tren</a>
+          </li>
+          <li class="nav-item">
+            <a href="gamifikasi.html" class="nav-link">Minigame: Tebak Harga Rica!</a>
+          </li>
+          <li class="nav-item">
+            <a href="tentang.html" class="nav-link nav-link--active">Tentang Kami</a>
+          </li>
+          <li class="nav-item nav-item--cta">
+            <a href="login.html" class="btn-masuk">Masuk/Daftar</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO TENTANG -->
+  <section class="tentang-hero">
+    <div class="tentang-hero-inner">
+      <p class="tentang-label">Kelompok Pengembang</p>
+      <h1 class="tentang-judul">
+        Tentang <span class="tentang-highlight">Kami</span>
+      </h1>
+      <p class="tentang-desc">
+        RicaHolic adalah salah satu proyek mahasiswa Teknik Informatika
+        Universitas Sam Ratulangi (UNSRAT) Manado. Kami membangun sistem
+        prediksi harga rica berbasis Machine Learning untuk membantu
+        masyarakat Kota Manado mendapatkan informasi harga yang akurat.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- KARTU ANGGOTA -->
+  <section class="tentang-anggota section">
+    <div class="section-container">
+
+      <div class="anggota-intro">
+        <h2 class="anggota-judul">Anggota Kelompok</h2>
+        <p class="anggota-sub">
+          Teknik Informatika · UNSRAT Manado · 2024
+        </p>
+      </div>
+
+      <div class="anggota-grid">
+
+        <!-- Anggota 1 -->
+        <div class="anggota-kartu">
+          <div class="anggota-foto-wrapper">
+            
+            <img
+              src="gambar/sofi.jpg"
+              alt="Foto Sofi Tulangow"
+              class="anggota-foto"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+           
+          </div>
+          <div class="anggota-info">
+            <h3 class="anggota-nama">Sofi Tulangow</h3>
+            <p class="anggota-nim">NIM 240211060009</p>
+            <p class="anggota-prodi">Teknik Informatika · UNSRAT</p>
+          </div>
+        </div>
+
+        <!-- Anggota 2 -->
+        <div class="anggota-kartu">
+          <div class="anggota-foto-wrapper">
+            <img
+              src="gambar/anastasya.jpeg"
+              alt="Foto Cristalia Ambarita"
+              class="anggota-foto"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            
+          </div>
+          <div class="anggota-info">
+            <h3 class="anggota-nama">Cristalia Ambarita</h3>
+            <p class="anggota-nim">NIM 240211060029</p>
+            <p class="anggota-prodi">Teknik Informatika · UNSRAT</p>
+          </div>
+        </div>
+
+        <!-- Anggota 3 -->
+        <div class="anggota-kartu">
+          <div class="anggota-foto-wrapper">
+            <img
+              src="gambar/chen.jpeg"
+              alt="Foto Gretchen Makarewa"
+              class="anggota-foto"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+           
+          </div>
+          <div class="anggota-info">
+            <h3 class="anggota-nama">Gretchen Makarewa</h3>
+            <p class="anggota-nim">NIM 240211060039</p>
+            <p class="anggota-prodi">Teknik Informatika · UNSRAT</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TENTANG PROYEK -->
+  <section class="tentang-proyek section">
+    <div class="section-container">
+
+      <div class="proyek-grid">
+
+        <div class="proyek-teks">
+          <h2 class="proyek-judul">Tentang Proyek</h2>
+          <p>
+            RicaHolic hadir sebagai solusi informasi harga cabai rawit 
+            (rica) di Kota Manado yang selama ini sulit diprediksi karena
+            fluktuasi tinggi. Sistem kami menggunakan model
+            <strong>Random Forest</strong> dengan akurasi <strong>MAPE 6,62%</strong>
+            untuk menghasilkan prediksi harga 7 hari ke depan.
+          </p>
+          <p>
+            Sumber data yang pertama yang digunakan dalam model adalah 
+            data cuaca dari situs web resmi data online <strong> Meteorologi, 
+            Klimatologi, dan Geofisika </strong> (BMKG, dataonline.bmkg.go.id) dengan 
+            rentang waktu kurang lebih 5 tahun (Januari 2020-Maret 2026). 
+            Data kedua adalah data harga cabai rawit merah yang diambil dari 
+            situs web resmi <strong>Pusat Informasi Harga Pangan Strategis Nasional</strong> 
+            (PIHPS, www.bi.go.id), dengan rentang waktu kurang lebih sama dengan 
+            data curah hujan. Untuk prediksi selanjutnya data cuaca akan diambil 
+            langsung dari Open-Meteo API untuk meningkatkan akurasi prediksi.
+          </p>
+        </div>
+
+        <div class="proyek-stack">
+          <h3 class="stack-judul">Teknologi yang Digunakan</h3>
+          <ul class="stack-list">
+            <li>
+              <span class="stack-ikon"></span>
+              <div>
+                <strong>Random Forest ML</strong>
+                <p>Model prediksi harga dengan MAPE 6,62%</p>
+              </div>
+            </li>
+            <li>
+              <span class="stack-ikon"></span>
+              <div>
+                <strong>PHP + MySQL</strong>
+                <p>Backend API dan penyimpanan data</p>
+              </div>
+            </li>
+            <li>
+              <span class="stack-ikon"></span>
+              <div>
+                <strong>Open-Meteo API</strong>
+                <p>Data cuaca real-time Kota Manado</p>
+              </div>
+            </li>
+            <li>
+              <span class="stack-ikon"></span>
+              <div>
+                <strong>Vanilla JS + CSS</strong>
+                <p>Frontend tanpa framework, ringan & cepat</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <div class="footer-col footer-col--brand">
+          <p class="footer-matakuliah">
+            Proyek Mata Kuliah Topik Khusus Teknik Informatika UNSRAT
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Navigasi</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="histori.html">Histori Harga</a></li>
+            <li><a href="gamifikasi.html">Tebak Harga</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="login.html">Masuk</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Teknologi</h4>
+          <ul class="footer-links" role="list">
+            <li>✅ Random Forest ML</li>
+            <li>✅ MAPE 6,62%</li>
+            <li>✅ Open-Meteo API</li>
+            <li>✅ PHP + MySQL Backend</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> RicaHolic Manado.
+          Dibuat untuk keperluan akademik.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <button
+    id="btn-back-to-top"
+    class="btn-back-to-top"
+    aria-label="Kembali ke atas"
+    hidden
+  >&#8679;</button>
+
+  <script src="js/tentang.js"></script>
+
+</body>
+</html>
